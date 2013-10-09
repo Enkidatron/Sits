@@ -1,5 +1,7 @@
 <div class="center hero-unit">
 	<h1>Welcome! </h1>
 	<p>to SITS Helper!</p>
-	<p>Maybe sign up or something.</p>
+	<% unless user_signed_in? %>
+		<p><%= link_to "Maybe sign up or something.", new_user_registration_path, class: "btn btn-primary btn-large" %></p>
+	<% end %>
 </div>
