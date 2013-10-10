@@ -13,6 +13,8 @@ SitsHelper::Application.routes.draw do
 
   root :to => 'pages#home'
   get 'about' => 'pages#about'
+  post 'games/:id/join' => 'games#join', as: 'join_game'
+  post 'games/:id/leave' => 'games#leave', as: 'leave_game'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,10 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Description:</b>
-  <%= @game.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<div class="row">
+	<div class="span6 offset3">
+		<div class="well">
+			<p>
+				<%= @game.description %>
+			</p>
+			
+			<% @game.users.each do |user| %>
+				<p>
+					<%= user.name %>
+				</p>
+			<% end %>
+			<%= link_to 'Edit', edit_game_path(@game) %> |
+			<%= link_to 'Back', games_path %>
+		</div>
+	</div>
+</div>
