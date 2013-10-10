@@ -11,12 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131010150305) do
+ActiveRecord::Schema.define(:version => 20131010163108) do
 
   create_table "games", :force => true do |t|
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "games_users", :force => true do |t|
+    t.integer  "game_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "ship_classes", :force => true do |t|
@@ -29,7 +36,12 @@ ActiveRecord::Schema.define(:version => 20131010150305) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "game_id"
   end
+
+  add_index "ships", ["game_id"], :name => "index_ships_on_game_id"
+  add_index "ships", ["user_id"], :name => "index_ships_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

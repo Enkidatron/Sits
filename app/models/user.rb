@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   # attr_accessible :title, :body
 
+  has_many :games_users
+  has_many :games, :through => :games_users
+  has_many :ships, :dependent => :destroy
   validates :name, presence: true
   
 end
