@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
   attr_accessible :description
 
-  has_many :games_users
-  has_many :users, :through => :games_users
-  has_many :ships, :dependent => :destroy
+  has_many :game_user_joins
+  has_many :users, :through => :game_user_joins
+  has_many :ships, :through => :users, :dependent => :destroy
 end

@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /games
   # GET /games.json
   def index
@@ -24,7 +26,7 @@ class GamesController < ApplicationController
   # GET /games/new
   # GET /games/new.json
   def new
-    @game = Game.new
+    @game = current_user.games.new
 
     respond_to do |format|
       format.html # new.html.erb
