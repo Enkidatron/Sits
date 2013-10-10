@@ -1,5 +1,14 @@
 SitsHelper::Application.routes.draw do
   
+  resources :games
+
+
+  resources :ship_classes
+
+
+  resources :ships
+
+
   devise_for :users
 
   root :to => 'pages#home'
