@@ -1,26 +1,26 @@
-<h1>Listing games</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Games</h3>
+  </div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Players</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><th>Owned Games</th><% 5.times do %><th></th><% end %></tr>
-    <%= render @owned_games %>
-    <tr><th>Joined Games</th><% 5.times do %><th></th><% end %></tr>
-    <%= render @joined_games %>
-    <tr><th>Open Games</th><% 5.times do %><th></th><% end %></tr>
-    <%= render @open_games %>
-  </tbody>
-</table>
-
-<br />
-
-<%= link_to 'New Game', new_game_path, class: "btn" %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Players</th>
+        <% 4.times do %><th></th><% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th>Owned Games</th><% 5.times do %><th></th><% end %></tr>
+      <%= render @owned_games %>
+      <tr><th>Joined Games</th><% 5.times do %><th></th><% end %></tr>
+      <%= render @joined_games %>
+      <tr><th>Open Games</th><% 5.times do %><th></th><% end %></tr>
+      <%= render @open_games %>
+    </tbody>
+  </table>
+  <div class="panel-footer">
+    <%= link_to 'New Game', new_game_path, class: "btn" %>
+  </div>
+</div>

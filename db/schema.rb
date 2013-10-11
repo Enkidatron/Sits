@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131010210710) do
+ActiveRecord::Schema.define(:version => 20131011152305) do
 
   create_table "game_user_joins", :force => true do |t|
     t.integer  "game_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20131010210710) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "open",        :default => true
+    t.integer  "turn",        :default => 0,    :null => false
+    t.integer  "phase",       :default => 0,    :null => false
   end
 
   create_table "ship_classes", :force => true do |t|

@@ -127,13 +127,30 @@ class GamesController < ApplicationController
   def leave
     @game = Game.find(params[:id])
     @game.users.delete(current_user)
-    if @game.users.count == 0
+    if @game.owners.count == 0
       @game.destroy
     end
-    
+
 
     respond_to do |format|
       format.html {redirect_to @game}
     end
   end
+
+  # POST /games/1/start
+  def start
+    @game = Game.find(params[:id])
+    @game.open = false
+    @game.turn = 1
+    @game.phase = 1
+
+    respond_to do |format|
+      if @game.update_attributes(params[:game])
+        format.html { redirect_to @game, notice: 'Game was successfully started.' }
+      else
+        format.html { render action: "edit" }
+      end
+    end
+  end
+
 end

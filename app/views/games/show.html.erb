@@ -1,19 +1,33 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row">
-	<div class="span6 offset3">
-		<div class="well">
-			<p>
-				<%= @game.description %>
-			</p>
-			
-			<% @game.users.each do |user| %>
-				<p>
-					<%= user.name %>
-				</p>
-			<% end %>
-			<%= link_to 'Edit', edit_game_path(@game) %> |
-			<%= link_to 'Back', games_path %>
+	<div class="span10 offset1">
+		<div class="well well-sm">
+			<table class="table">
+				<thead>
+					<th>Description</th>
+					<th>Players</th>
+					<% 4.times do %><th></th><% end %>
+				</thead>
+				<tbody>
+					<tr>
+						<td><%= @game.description %></td>
+						<td><%= @game.users.map(&:name).join(", ") %></td>
+						<td><% if @game.started? %>
+								Turn: <%= @game.turn %>
+							<% elsif @game.owners.include?(current_user) %>
+								<%= link_to 'Start', start_game_path(@game), method: :post, class: "btn btn-primary" %>
+							<% end %>
+						</td>
+						<td><% if @game.users.include?(current_user) %>
+							<%= link_to 'Leave', leave_game_path(@game), method: :post, class: "btn", data: { confirm: 'Are you sure?'} %>
+							<% else %>
+							<%= link_to 'Join', join_game_path(@game), method: :post, class: "btn" %>
+							<% end %>
+						</td>
+					  <td><%= link_to 'Edit', edit_game_path(@game), class: "btn" %></td>
+					  <td><%= link_to 'Back', games_path, class: "btn" %></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>

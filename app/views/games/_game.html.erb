@@ -2,13 +2,19 @@
 	<td><%= game.description %></td>
 	<!-- <td><% game.users.each do |user| %><p><%= user.name %></p><% end %></td> -->
 	<td><%= game.users.map(&:name).join(", ") %></td>
-	<td><% if game.users.include?(current_user) %>
-		<%= link_to 'Leave', leave_game_path(game), method: :post %>
-		<% else %>
-		<%= link_to 'Join', join_game_path(game), method: :post %>
+	<td><% if game.started? %>
+			Turn: <%= game.turn %>
+		<% elsif game.owners.include?(current_user) %>
+			<%= link_to 'Start', start_game_path(game), method: :post, class: "btn btn-primary" %>
 		<% end %>
 	</td>
-	<td><%= link_to 'Show', game %></td>
-    <td><%= link_to 'Edit', edit_game_path(game) %></td>
-    <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<td><% if game.users.include?(current_user) %>
+		<%= link_to 'Leave', leave_game_path(game), method: :post, class: "btn", data: { confirm: 'Are you sure?'} %>
+		<% else %>
+		<%= link_to 'Join', join_game_path(game), method: :post, class: "btn" %>
+		<% end %>
+	</td>
+	<td><%= link_to 'Show', game, class: "btn btn-primary" %></td>
+    <td><%= link_to 'Edit', edit_game_path(game), class: "btn" %></td>
+    <!-- <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
 </tr>
