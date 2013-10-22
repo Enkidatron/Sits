@@ -1,0 +1,51 @@
+<div class="span4">
+	<div class="panel panel-default">
+		<div class="panel-heading"><%= info[:name] %></div>
+		<div class="panel-body">
+			<!-- this will need modified -->
+			<div class="well well-small">
+				<table>
+					<tr><td>
+						<span class="label">fcon: <%= info[:fcon] %></span>
+					</td></tr>
+					<tr><td>
+						<table class="table table-condensed">
+							<tr>
+								<td>
+									<span class="label">mag: <%= info[:mag] %></span>
+								</td>
+								<td>
+									<table >
+										<tr>
+											<td><%= info[:missiles][:dmg] %>M</td>
+											<td><%= info[:missiles][:launchers] %></td>
+										</tr>
+										<% info[:energy].each do |weapon,stats| %>
+										<tr>
+											<td><%= stats[:dmg].join("/") %> <%= weapon.capitalize %></td>
+											<td><%= stats[:mounts] %></td>
+										</tr>
+										<% end %>
+										<tr>
+											<td>CM</td>
+											<td><%= info[:cm] %></td>
+										</tr>
+										<tr>
+											<td>PD</td>
+											<td><%= info[:pd] %></td>
+										</tr>
+									</table>
+								</td>
+								<% if info[:decoy] > 0 %>
+								<td>
+									<span class="label">decoys: <%= info[:decoy] %></span>
+								</td>
+								<% end %>
+							</tr>
+						</table>
+					</td></tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

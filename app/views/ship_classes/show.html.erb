@@ -24,185 +24,30 @@
 	</div>
 </div>
 <div class="row">
-	<div class="span4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Forward Hammerhead</div>
-			<div class="panel-body">
-				<!-- this will need modified, could possibly be templated -->
-				<div class="well well-small">
-					fcon: <%= @ship_class.fore_fcon %>
-					mag: <%= @ship_class.fore_mag %>
-					missiles: <%= @ship_class.fore_missiles %>
-					energy: <%= @ship_class.fore_energy %>
-					CM: <%= @ship_class.fore_cm %>
-					PD: <%= @ship_class.fore_pd %>
-					decoys: <%= @ship_class.fore_decoy %>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="span4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Aft Hammerhead</div>
-			<div class="panel-body">
-				<!-- this will need modified, could possibly be templated -->
-				<div class="well well-small">
-					fcon: <%= @ship_class.aft_fcon %>
-					mag: <%= @ship_class.aft_mag %>
-					missiles: <%= @ship_class.aft_missiles %>
-					energy: <%= @ship_class.aft_energy %>
-					CM: <%= @ship_class.aft_cm %>
-					PD: <%= @ship_class.aft_pd %>
-					decoys: <%= @ship_class.aft_decoy %>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="span4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="panel-title">
-					Officers & Crew
-				</div>
-			</div>
-			<div class="panel-body">
-				<!-- this will need modified -->
-				<div class="well well-small">
-					Base Cost: <%= @ship_class.base_cost %>
-				</div>
-			</div>
-		</div>
-	</div>
-
-</div>
-<div class="row">
-	<div class="span4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Port Broadside</div>
-			<div class="panel-body">
-				<!-- this will need modified, could possibly be templated -->
-				<div class="well well-small">
-					fcon: <%= @ship_class.port_fcon %>
-					mag: <%= @ship_class.port_mag %>
-					missiles: <%= @ship_class.port_missiles %>
-					energy: <%= @ship_class.port_energy %>
-					CM: <%= @ship_class.port_cm %>
-					PD: <%= @ship_class.port_pd %>
-					decoys: <%= @ship_class.port_decoy %>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="span4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Starboard Broadside</div>
-			<div class="panel-body">
-				<!-- this will need modified, could possibly be templated -->
-				<div class="well well-small">
-					fcon: <%= @ship_class.star_fcon %>
-					mag: <%= @ship_class.star_mag %>
-					missiles: <%= @ship_class.star_missiles %>
-					energy: <%= @ship_class.star_energy %>
-					CM: <%= @ship_class.star_cm %>
-					PD: <%= @ship_class.star_pd %>
-					decoys: <%= @ship_class.star_decoy %>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="span4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Range Bands</div>
-			<div class="panel-body">
-				<!-- this will need modified -->
-				<div class="well well-small">
-					<%= @ship_class.range_bands %>
-				</div>
-			</div>
-		</div>
-	</div>
-
-</div>
-<div class="row">
 	<div class="span8">
-		<div class="panel panel-default">
-			<div class="panel-heading">Hit Location Table</div>
-			<div class="panel-body">
-				<div class="well well-small">
-					<span class="label">Scale: <%= @ship_class.scale %></span>
-					<span class="label">Core Armor: <%= @ship_class.core_armor %></span>
-					<br />
-					Starboard Sidewall <%= @ship_class.star_sidewall %>
-					<br />
-					Port Sidewall <%= @ship_class.port_sidewall %>
-				</div>
-			</div>
+		<div class="row">
+			<%= render 'broadside', info: { name: "Forward Hammerhead", fcon: @ship_class.fore_fcon, mag: @ship_class.fore_mag, missiles: @ship_class.fore_missiles, energy: @ship_class.fore_energy, cm: @ship_class.fore_cm, pd: @ship_class.fore_pd, decoy: @ship_class.fore_decoy} %>
+			<%= render 'broadside', info: { name: "Aft Hammerhead", fcon: @ship_class.aft_fcon, mag: @ship_class.aft_mag, missiles: @ship_class.aft_missiles, energy: @ship_class.aft_energy, cm: @ship_class.aft_cm, pd: @ship_class.aft_pd, decoy: @ship_class.aft_decoy} %>
+		</div>
+		<div class="row">
+			<%= render 'broadside', info: { name: "Port Broadside", fcon: @ship_class.port_fcon, mag: @ship_class.port_mag, missiles: @ship_class.port_missiles, energy: @ship_class.port_energy, cm: @ship_class.port_cm, pd: @ship_class.port_pd, decoy: @ship_class.port_decoy} %>
+			<%= render 'broadside', info: { name: "Starboard Broadside", fcon: @ship_class.star_fcon, mag: @ship_class.star_mag, missiles: @ship_class.star_missiles, energy: @ship_class.star_energy, cm: @ship_class.star_cm, pd: @ship_class.star_pd, decoy: @ship_class.star_decoy} %>
+		</div>
+		<div class="row">
+			<%= render 'hit', info: { scale: @ship_class.scale, core_armor: @ship_class.core_armor, star_sidewall: @ship_class.star_sidewall, port_sidewall: @ship_class.port_sidewall } %>
 		</div>
 	</div>
 	<div class="span4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Internals</div>
-			<div class="panel-body">
-				<div class="well well-small">
-					<table class="table">
-						<tr>
-							<td>
-								<table class="table">
-									<tr><td>
-										[brg] Bridge<br /><%= @ship_class.brg %>
-									</td></tr>
-									<tr><td>
-										[flg] Flag Bridge<br /><%= @ship_class.flg %>
-									</td></tr>
-									<tr><td>
-										[lif] Life Support<br /><%= @ship_class.lif %>
-									</td></tr>
-									<tr><td>
-										[com] Communications<br /><%= @ship_class.com %>
-									</td></tr>
-									<tr><td>
-										ECM<br /><%= @ship_class.ecm %>
-									</td></tr>
-									<tr><td>
-										[piv] Pivot<br /><%= @ship_class.piv %>
-									</td></tr>
-									<tr><td>
-										[rol] Roll<br /><%= @ship_class.rol %>
-									</td></tr>
-									<tr><td>
-										[fwd] Forward Impeller<br /><%= @ship_class.fwd %>
-									</td></tr>
-									<tr><td>
-										[aft] Aft Impeller<br /><%= @ship_class.aft %>
-									</td></tr>
-									<tr><td>
-										Maximum Thrust<br /><%= @ship_class.thrust %>
-									</td></tr>
-								</table>
-							</td>
-							<td>
-								<table class="table">
-									<tr><td>
-										[hyp] Hyper Generator<br /><%= @ship_class.hyp %>
-									</td></tr>
-									<tr><td>
-										[hull] Hull<br /><%= @ship_class.hull %>
-									</td></tr>
-									<tr><td>
-										Repair Parties<br /><%= @ship_class.repair_parties %>
-									</td></tr>
-									<tr><td>
-										[SI] Structural Integrity<br /><%= @ship_class.si %>
-									</td>
-								</tr>
-							</table>
-						</td></tr>
-					</table>
-				</div>
-			</div>
+		<div class="row">
+			<%= render 'crew', info: { base_cost: @ship_class.base_cost } %>
+		</div>
+		<div class="row">
+			<%= render 'range', info: { range_bands: @ship_class.range_bands } %>
+		</div>
+		<div class="row">
+			<%= render 'internals', info: { brg: @ship_class.brg, flg: @ship_class.flg, lif: @ship_class.lif, com: @ship_class.com, ecm: @ship_class.ecm, piv: @ship_class.piv, rol: @ship_class.rol, fwd: @ship_class.fwd, aft: @ship_class.aft, thrust: @ship_class.thrust, hyp: @ship_class.hyp, hull: @ship_class.hull, repair_parties: @ship_class.repair_parties, si: @ship_class.si } %>
 		</div>
 	</div>
-
 </div>
 
 
