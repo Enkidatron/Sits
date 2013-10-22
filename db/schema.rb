@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131011152305) do
+ActiveRecord::Schema.define(:version => 20131022172505) do
 
   create_table "game_user_joins", :force => true do |t|
     t.integer  "game_id"
@@ -33,8 +33,65 @@ ActiveRecord::Schema.define(:version => 20131011152305) do
 
   create_table "ship_classes", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "base_cost"
+    t.integer  "officers"
+    t.integer  "enlisted"
+    t.integer  "marines"
+    t.text     "small_craft"
+    t.integer  "recon_drones"
+    t.text     "fore_fcon"
+    t.integer  "fore_mag"
+    t.text     "fore_missiles"
+    t.text     "fore_energy"
+    t.text     "fore_cm"
+    t.text     "fore_pd"
+    t.integer  "fore_decoy"
+    t.text     "aft_fcon"
+    t.integer  "aft_mag"
+    t.text     "aft_missiles"
+    t.text     "aft_energy"
+    t.text     "aft_cm"
+    t.text     "aft_pd"
+    t.integer  "aft_decoy"
+    t.text     "port_fcon"
+    t.integer  "port_mag"
+    t.text     "port_missiles"
+    t.text     "port_energy"
+    t.text     "port_cm"
+    t.text     "port_pd"
+    t.integer  "port_decoy"
+    t.text     "star_fcon"
+    t.integer  "star_mag"
+    t.text     "star_missiles"
+    t.text     "star_energy"
+    t.text     "star_cm"
+    t.text     "star_pd"
+    t.integer  "star_decoy"
+    t.integer  "scale"
+    t.integer  "core_armor"
+    t.text     "star_sidewall"
+    t.text     "port_sidewall"
+    t.text     "brg"
+    t.text     "flg"
+    t.integer  "lif"
+    t.integer  "com"
+    t.text     "ecm"
+    t.text     "piv"
+    t.text     "rol"
+    t.integer  "fwd"
+    t.integer  "aft"
+    t.text     "thrust"
+    t.integer  "hyp"
+    t.integer  "hull"
+    t.text     "si"
+    t.text     "repair_parties"
+    t.text     "range_bands"
+    t.text     "cost_adjusters"
+    t.string   "faction"
+    t.string   "classification"
+    t.integer  "decoy_strength"
   end
 
   create_table "ships", :force => true do |t|

@@ -1,10 +1,211 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	<div class="span10 offset1">
+		<table class="table">
+			<thead>
+				<th><%= @ship_class.faction %></th>
+				<th><i><%= @ship_class.name %></i> class <%= @ship_class.classification %></th>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="span8 offset2">
+		<table class="table">
+			<tbody>
+				<tr>
+					<td><small>Crew: <%= @ship_class.total_crew %> (<%= @ship_class.officers %> Officers, <%= @ship_class.enlisted %> Enlisted, <%= @ship_class.marines %> Marines)</small></td>
+					<td><small>Small Craft: <% @ship_class.small_craft.each do |craft,count| %>
+						<%= count %> <%= craft %>, 
+						<% end %>
+					</small></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Forward Hammerhead</div>
+			<div class="panel-body">
+				<!-- this will need modified, could possibly be templated -->
+				<div class="well well-small">
+					fcon: <%= @ship_class.fore_fcon %>
+					mag: <%= @ship_class.fore_mag %>
+					missiles: <%= @ship_class.fore_missiles %>
+					energy: <%= @ship_class.fore_energy %>
+					CM: <%= @ship_class.fore_cm %>
+					PD: <%= @ship_class.fore_pd %>
+					decoys: <%= @ship_class.fore_decoy %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Aft Hammerhead</div>
+			<div class="panel-body">
+				<!-- this will need modified, could possibly be templated -->
+				<div class="well well-small">
+					fcon: <%= @ship_class.aft_fcon %>
+					mag: <%= @ship_class.aft_mag %>
+					missiles: <%= @ship_class.aft_missiles %>
+					energy: <%= @ship_class.aft_energy %>
+					CM: <%= @ship_class.aft_cm %>
+					PD: <%= @ship_class.aft_pd %>
+					decoys: <%= @ship_class.aft_decoy %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					Officers & Crew
+				</div>
+			</div>
+			<div class="panel-body">
+				<!-- this will need modified -->
+				<div class="well well-small">
+					Base Cost: <%= @ship_class.base_cost %>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<p>
-  <b>Name:</b>
-  <%= @ship_class.name %>
-</p>
+</div>
+<div class="row">
+	<div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Port Broadside</div>
+			<div class="panel-body">
+				<!-- this will need modified, could possibly be templated -->
+				<div class="well well-small">
+					fcon: <%= @ship_class.port_fcon %>
+					mag: <%= @ship_class.port_mag %>
+					missiles: <%= @ship_class.port_missiles %>
+					energy: <%= @ship_class.port_energy %>
+					CM: <%= @ship_class.port_cm %>
+					PD: <%= @ship_class.port_pd %>
+					decoys: <%= @ship_class.port_decoy %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Starboard Broadside</div>
+			<div class="panel-body">
+				<!-- this will need modified, could possibly be templated -->
+				<div class="well well-small">
+					fcon: <%= @ship_class.star_fcon %>
+					mag: <%= @ship_class.star_mag %>
+					missiles: <%= @ship_class.star_missiles %>
+					energy: <%= @ship_class.star_energy %>
+					CM: <%= @ship_class.star_cm %>
+					PD: <%= @ship_class.star_pd %>
+					decoys: <%= @ship_class.star_decoy %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Range Bands</div>
+			<div class="panel-body">
+				<!-- this will need modified -->
+				<div class="well well-small">
+					<%= @ship_class.range_bands %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div class="row">
+	<div class="span8">
+		<div class="panel panel-default">
+			<div class="panel-heading">Hit Location Table</div>
+			<div class="panel-body">
+				<div class="well well-small">
+					<span class="label">Scale: <%= @ship_class.scale %></span>
+					<span class="label">Core Armor: <%= @ship_class.core_armor %></span>
+					<br />
+					Starboard Sidewall <%= @ship_class.star_sidewall %>
+					<br />
+					Port Sidewall <%= @ship_class.port_sidewall %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Internals</div>
+			<div class="panel-body">
+				<div class="well well-small">
+					<table class="table">
+						<tr>
+							<td>
+								<table class="table">
+									<tr><td>
+										[brg] Bridge<br /><%= @ship_class.brg %>
+									</td></tr>
+									<tr><td>
+										[flg] Flag Bridge<br /><%= @ship_class.flg %>
+									</td></tr>
+									<tr><td>
+										[lif] Life Support<br /><%= @ship_class.lif %>
+									</td></tr>
+									<tr><td>
+										[com] Communications<br /><%= @ship_class.com %>
+									</td></tr>
+									<tr><td>
+										ECM<br /><%= @ship_class.ecm %>
+									</td></tr>
+									<tr><td>
+										[piv] Pivot<br /><%= @ship_class.piv %>
+									</td></tr>
+									<tr><td>
+										[rol] Roll<br /><%= @ship_class.rol %>
+									</td></tr>
+									<tr><td>
+										[fwd] Forward Impeller<br /><%= @ship_class.fwd %>
+									</td></tr>
+									<tr><td>
+										[aft] Aft Impeller<br /><%= @ship_class.aft %>
+									</td></tr>
+									<tr><td>
+										Maximum Thrust<br /><%= @ship_class.thrust %>
+									</td></tr>
+								</table>
+							</td>
+							<td>
+								<table class="table">
+									<tr><td>
+										[hyp] Hyper Generator<br /><%= @ship_class.hyp %>
+									</td></tr>
+									<tr><td>
+										[hull] Hull<br /><%= @ship_class.hull %>
+									</td></tr>
+									<tr><td>
+										Repair Parties<br /><%= @ship_class.repair_parties %>
+									</td></tr>
+									<tr><td>
+										[SI] Structural Integrity<br /><%= @ship_class.si %>
+									</td>
+								</tr>
+							</table>
+						</td></tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
 
 
 <%= link_to 'Edit', edit_ship_class_path(@ship_class) %> |
-<%= link_to 'Back', ship_classes_path %>
+<%= link_to 'List', ship_classes_path %>
