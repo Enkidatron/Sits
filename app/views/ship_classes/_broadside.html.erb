@@ -22,7 +22,7 @@
 										</tr>
 										<% info[:energy].each do |weapon,stats| %>
 										<tr>
-											<td><%= stats[:dmg].join("/") %> <%= weapon.capitalize %></td>
+											<td><%= stats[:dmg].join("/") %><% weapon.to_s.split("_").each do |s| %><%= s[0].capitalize %><% end %></td>
 											<td><%= stats[:mounts] %></td>
 										</tr>
 										<% end %>
