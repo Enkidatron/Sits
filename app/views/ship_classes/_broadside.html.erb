@@ -28,11 +28,11 @@
 										<% end %>
 										<tr>
 											<td>CM</td>
-											<td><%= info[:cm] %></td>
+											<td><% info[:cm].each do |cm| %><span class="badge"><%= cm %></span><% end %></td>
 										</tr>
 										<tr>
 											<td>PD</td>
-											<td><%= info[:pd] %></td>
+											<td><% info[:pd].each do |pd| %><span class="badge"><%= pd %></span><% end %></td>
 										</tr>
 									</table>
 								</td>

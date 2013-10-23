@@ -7,55 +7,27 @@
 					<tr>
 						<td>
 							<table class="table table-condensed">
-								<tr><td>
-									[brg] Bridge<br /><%= info[:brg] %>
-								</td></tr>
-								<tr><td>
-									[flg] Flag Bridge<br /><%= info[:flg] %>
-								</td></tr>
-								<tr><td>
-									[lif] Life Support<br /><%= info[:lif] %>
-								</td></tr>
-								<tr><td>
-									[com] Communications<br /><%= info[:com] %>
-								</td></tr>
-								<tr><td>
-									ECM<br /><%= info[:ecm] %>
-								</td></tr>
-								<tr><td>
-									[piv] Pivot<br /><%= info[:piv] %>
-								</td></tr>
-								<tr><td>
-									[rol] Roll<br /><%= info[:rol] %>
-								</td></tr>
-								<tr><td>
-									[fwd] Forward Impeller<br /><%= info[:fwd] %>
-								</td></tr>
-								<tr><td>
-									[aft] Aft Impeller<br /><%= info[:aft] %>
-								</td></tr>
-								<tr><td>
-									Maximum Thrust<br /><%= info[:thrust] %>
-								</td></tr>
+								<%= render 'internalarray', info: {name: "[brg] Bridge", array: info[:brg]} %>
+								<%= render 'internalarray', info: {name: "[flg] Flag Bridge", array: info[:flg]} %>
+								<%= render 'internalinteger', info: {name: "[lif] Life Support", int: info[:lif]} %>
+								<%= render 'internalinteger', info: {name: "[com] Communications", int: info[:com]} %>
+								<%= render 'internalarray', info: {name:"ECM", array: info[:ecm]} %>
+								<%= render 'internalarray', info: {name: "[piv] Pivot", array: info[:piv]} %>
+								<%= render 'internalarray', info: {name: "[rol] Roll", array: info[:rol]} %>
+								<%= render 'internalinteger', info: {name: "[fwd] Forward Impeller", int: info[:fwd]} %>
+								<%= render 'internalinteger', info: {name: "[aft] Aft Impeller", int: info[:aft]} %>
+								<%= render 'internalarray', info: {name: "Maximum Thrust", array: info[:thrust]} %>
 							</table>
 						</td>
 						<td>
 							<table class="table table-condensed">
-								<tr><td>
-									[hyp] Hyper Generator<br /><%= info[:hyp] %>
-								</td></tr>
-								<tr><td>
-									[hull] Hull<br /><%= info[:hull] %>
-								</td></tr>
-								<tr><td>
-									Repair Parties<br /><%= info[:repair_parties] %>
-								</td></tr>
-								<tr><td>
-									[SI] Structural Integrity<br /><%= info[:si] %>
-								</td>
-							</tr>
-						</table>
-					</td></tr>
+								<%= render 'internalinteger', info: {name: "[hyp] Hyper Generator", int: info[:hyp]} %>
+								<%= render 'internalinteger', info: {name: "[hull] Hull", int: info[:hull]} %>
+								<%= render 'internalarray', info: {name: "Repair Parties", array: info[:repair_parties]} %>
+								<%= render 'internalarray', info: {name: "[SI] Structural Integrity", array: info[:si]} %>
+							</table>
+						</td>
+					</tr>
 				</table>
 			</div>
 		</div>

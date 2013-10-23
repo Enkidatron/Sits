@@ -6,9 +6,9 @@
 				<span class="label">Scale: <%= info[:scale] %></span>
 				<span class="label">Core Armor: <%= info[:core_armor] %></span>
 				<br />
-				Starboard Sidewall <%= info[:star_sidewall] %>
+				Starboard Sidewall <% info[:star_sidewall].each do |wall| %><span class="badge"><%= wall %></span><% end %>
 				<br />
-				Port Sidewall <%= info[:port_sidewall] %>
+				Port Sidewall <% info[:port_sidewall].each do |wall| %><span class="badge"><%= wall %></span><% end %>
 			</div>
 		</div>
 	</div>

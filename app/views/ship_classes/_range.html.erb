@@ -4,7 +4,14 @@
 		<div class="panel-body">
 			<!-- this will need modified -->
 			<div class="well well-small">
-				<%= info[:range_bands] %>
+				<table class="table table-condensed">
+					<% info[:range_bands].each do |row| %>
+					<tr><% row.each do |item| %>
+						<td><span class="label"><%= item %></span></td>
+						<% end %>
+					</tr>
+					<% end %>
+				</table>
 			</div>
 		</div>
 	</div>
