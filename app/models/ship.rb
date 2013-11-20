@@ -1,5 +1,5 @@
 class Ship < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :user_id, :ship_class_id, :game_id
 
   belongs_to :user
   belongs_to :game

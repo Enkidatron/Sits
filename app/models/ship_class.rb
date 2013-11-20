@@ -47,7 +47,7 @@ class ShipClass < ActiveRecord::Base
 	attr_accessible :lif, :com, :fwd, :aft, :hyp, :hull
 	serialize :range_bands, Array
 	serialize :cost_adjusters, Hash
-attr_accessible :range_bands, :cost_adjusters
+	attr_accessible :range_bands, :cost_adjusters
 
   has_many :ship, :dependent => :destroy
   validates :name, presence: true

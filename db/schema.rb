@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131022172505) do
+ActiveRecord::Schema.define(:version => 20131024185752) do
 
   create_table "game_user_joins", :force => true do |t|
     t.integer  "game_id"
@@ -96,13 +96,15 @@ ActiveRecord::Schema.define(:version => 20131022172505) do
 
   create_table "ships", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "user_id"
     t.integer  "game_id"
+    t.integer  "ship_class_id"
   end
 
   add_index "ships", ["game_id"], :name => "index_ships_on_game_id"
+  add_index "ships", ["ship_class_id"], :name => "index_ships_on_ship_class_id"
   add_index "ships", ["user_id"], :name => "index_ships_on_user_id"
 
   create_table "users", :force => true do |t|

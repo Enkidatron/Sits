@@ -28,6 +28,7 @@ class GamesController < ApplicationController
     # else
     #   @game = current_user.games.find(params[:id])
     # end
+    @ships = current_user.ships.where( game_id: @game )
 
     respond_to do |format|
       format.html # show.html.erb

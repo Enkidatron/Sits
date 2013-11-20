@@ -1,8 +1,10 @@
-<h1>Listing ship_classes</h1>
+<h1>Listing Ship Classes</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Name</th>
+    <th>Faction</th>
+    <th>Weight Class</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,6 +13,8 @@
 <% @ship_classes.each do |ship_class| %>
   <tr>
     <td><%= ship_class.name %></td>
+    <td><%= ship_class.faction %></td>
+    <td><%= ship_class.classification %></td>
     <td><%= link_to 'Show', ship_class %></td>
     <td><%= link_to 'Edit', edit_ship_class_path(ship_class) %></td>
     <td><%= link_to 'Destroy', ship_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
