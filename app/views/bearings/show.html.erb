@@ -1,0 +1,27 @@
+<% unless @bearing.nil? %>
+	<% if @bearing.is_invalid? %>
+		<div class="well well-small">
+			<span class="label label-warning">Invalid Input!</span>
+		</div>
+	<% else %>
+		<div class="well well-small">
+		Front: <span class="badge"><%= @bearing.front %></span>
+		Top: <span class="badge"><%= @bearing.top %></span>
+		<% unless @bearing.is_ship_valid? %>
+			<span class="label label-warning">Ship Not Valid!</span>
+			</div>
+		<% else %>
+			<span class="label label-success">Ship Valid!</span>
+			</div>
+			<% if @bearing.has_targets? %>
+				<div class="well well-small">
+					<% @bearing.targets.each do |t| %>
+					Target: <%= t %> <span class="badge"><%= @bearing.evaluate_target(t) %></span> <br>
+					<% end %>
+				</div>
+			<% end %>
+			<br>
+		<% end %>
+	<% end %>
+<% end %>
+<%= render 'form' %>
