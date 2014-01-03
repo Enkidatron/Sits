@@ -21,6 +21,9 @@ gem 'coffee-rails', '~> 4.0.1'
 gem 'uglifier', '>= 1.0.3'
 gem 'bootstrap-sass', '~> 2.3.2.2'
 
+# Gems removed from Rails 4
+gem 'protected_attributes'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
