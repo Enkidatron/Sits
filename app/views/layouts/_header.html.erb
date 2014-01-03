@@ -1,32 +1,27 @@
-<div class="navbar navbar-fixed-top" role="navigation">
-	<div class="navbar-inner">
-		<div class="container">
-			<a class="btn btn-navbar" data-toggle="collapse" data-target".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>
-			<a class="brand" href="/">SITS Helper</a>
-			<div class="nav-collapse">
-				<ul class="nav">
-					<li>
-						<%= link_to 'Home', root_path %>
-					</li>
-					<li>
-						<%= link_to 'About', about_path %>
-					</li>
-					<li><%= link_to 'Ship Classes', ship_classes_path %></li>
-					<li><%= link_to 'Bearing Checker', bearings_path %></li>
-				</ul>
-				<ul class="nav pull-right">
-					<% if user_signed_in? %>
-						<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-						<li><%= link_to "Logout #{current_user.name}", destroy_user_session_path, method: :delete %></li>
-					<% else %>
-						<li><%= link_to 'Login', new_user_session_path %></li>
-					<% end %>
-				</ul>
-			</div>
-		</div>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target"#nav-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="/">SITS Helper</a>
 	</div>
-</div>
+	<div class="collapse navbar-collapse" id="nav-collapse">
+		<ul class="nav navbar-nav">
+			<li><%= link_to 'Home', root_path %></li>
+			<li><%= link_to 'About', about_path %></li>
+			<li><%= link_to 'Ship Classes', ship_classes_path %></li>
+			<li><%= link_to 'Bearing Checker', bearings_path %></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<% if user_signed_in? %>
+				<li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+				<li><%= link_to "Logout #{current_user.name}", destroy_user_session_path, method: :delete %></li>
+			<% else %>
+				<li><%= link_to 'Login', new_user_session_path %></li>
+			<% end %>
+		</ul>
+	</div>
+</nav>
