@@ -9,6 +9,8 @@ gem 'simple_form'
 group :production do
 	gem 'pg'
 	# gem 'rails_12factor'
+	# Asset fix for Rails 4
+	gem 'rails_serve_static_assets'
 end
 group :development, :test do
 	gem 'sqlite3'
