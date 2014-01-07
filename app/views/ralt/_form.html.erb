@@ -1,0 +1,9 @@
+<%= form_tag("/ralt", method: "get") do %>
+	<%= label_tag(:f, "Front:") %>
+	<%= text_field_tag(:f) %>
+	<%= label_tag(:t, "Top:") %>
+	<%= text_field_tag(:t) %>
+	<%= label_tag(:d, "Distances:") %>
+	<%= text_field_tag(:d) %>
+	<%= submit_tag("Calculate") %>
+<% end %>

@@ -15,11 +15,13 @@ SitsHelper::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  # The opposite of this
   config.assets.compile = false
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
+  # Rails 4
+  config.eager_load = true
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH

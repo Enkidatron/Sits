@@ -2,6 +2,8 @@ SitsHelper::Application.routes.draw do
   
   get "bearings" => 'bearings#show'
 
+  get "ralt" => 'ralt#show'
+
   resources :games
 
 

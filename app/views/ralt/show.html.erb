@@ -1,0 +1,32 @@
+<% if @ralt.has_ship? %>
+	<div class="well well-small">
+		<% if @ralt.valid_ship? %>
+			Front: <span class="badge"><%= @ralt.ship.front %></span>
+			Top: <span class="badge"><%= @ralt.ship.top %></span>
+			<span class="label label-success">Ship Valid!</span>
+		<% else %>
+			<span class="label label-warning">Invalid Input!</span>
+		<% end %>
+	</div>
+<% end %>
+<% if @ralt.has_targets? %>
+	<div class="well well-small">
+		<table class = "table table-condensed">
+			<thead><th>Bearing</th><th>Distance</th>
+				<% if @ralt.valid_ship? %><th>Facing</th><% end %>
+			</thead>
+			<tbody>
+				<% @ralt.bearing_vectors.each do |vector| %>
+					<tr>
+					<td><span class="badge"><%= vector[0] %></span></td>
+					<td><span class="badge"><%= vector[1] %></span></td>
+					<% if @ralt.valid_ship? %>
+						<td><span class="badge"><%= @ralt.ship.evaluate_target(vector[0]) %></span></td>
+					<% end %>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+<% end %>
+<%= render 'form' %>

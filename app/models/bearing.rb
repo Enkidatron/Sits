@@ -7,7 +7,7 @@ class Bearing
 	def initialize(front,top,targets)
 		if validate_bearing(front.strip.downcase) then	@front = front.strip.downcase else @front = nil end
 		if validate_bearing(top.strip.downcase, lines = true) then @top = top.strip.downcase else @top = nil end
-		@targets = targets.split(',').map { |t| if validate_bearing(t.strip) then t.strip else '' end }
+		@targets = targets.downcase.split(',').map { |t| if validate_bearing(t.strip) then t.strip else '' end }
 		@targets.reject! { |t| t.empty? }
 		@math_front, @math_top, @math_targets, @invert = rotate_bearings(@front,@top,@targets) unless is_invalid?
 	end
