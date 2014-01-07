@@ -71,7 +71,17 @@ module RaltHelper
 				letters = "#{both[0]}#{both[1]}"
 			end
 		end
-		return "#{letters}#{symbols}", Math.hypot(flat_distance,up_distance).to_i
+		return "#{letters}#{symbols}", Math.hypot(flat_distance,up_distance).to_i, components
 	end
 
+	def display_distance(components)
+		components.default = 0
+		directions = ['a','b','c','d','e','f','+','-']
+		result = ''
+		directions.each do |direction|
+			result += "#{direction}#{components[direction]}" if components[direction]>0
+		end
+		result
+	end
+	
 end

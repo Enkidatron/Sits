@@ -12,12 +12,13 @@
 <% if @ralt.has_targets? %>
 	<div class="well well-small">
 		<table class = "table table-condensed">
-			<thead><th>Bearing</th><th>Distance</th>
+			<thead><th>Charted Distance</th><th>Bearing</th><th>Distance</th>
 				<% if @ralt.valid_ship? %><th>Facing</th><% end %>
 			</thead>
 			<tbody>
 				<% @ralt.bearing_vectors.each do |vector| %>
 					<tr>
+					<td><span class="badge"><%= display_distance(vector[2]) %> </span></td>
 					<td><span class="badge"><%= vector[0] %></span></td>
 					<td><span class="badge"><%= vector[1] %></span></td>
 					<% if @ralt.valid_ship? %>
