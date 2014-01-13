@@ -15,9 +15,26 @@
 			</div>
 			<% if @bearing.has_targets? %>
 				<div class="well well-small">
-					<% @bearing.targets.each do |t| %>
-					Target: <%= t %> <span class="badge"><%= @bearing.evaluate_target(t) %></span> <br>
-					<% end %>
+					<table class="table table-condensed">
+						<thead><th>Target</th><th>Bearing</th></thead>
+						<tbody>
+							<% @bearing.targets.each do |t| %>
+							<tr><td><span class="badge"><%= t %></span></td> 
+							<td>
+							<% case @bearing.evaluate_target(t) %>
+									<% when 'Fore, Unprotected', 'Aft, Unprotected' %>
+										<span class="label label-danger">
+									<% when 'Fore, Starboard Sidewall', 'Fore, Port Sidewall', 'Aft, Starboard Sidewall', 'Aft, Port Sidewall' %>
+										<span class="label label-warning">
+									<% when 'Starboard Broadside','Port Broadside' %>
+										<span class="label label-success">
+									<% else %>
+										<span class="label label-default">
+									<% end %>
+									<%= @bearing.evaluate_target(t) %></span>
+							</td></tr>
+						<% end %>
+					</tbody></table>
 				</div>
 			<% end %>
 			<br>

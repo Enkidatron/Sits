@@ -8,7 +8,7 @@ class Ralt
 		unless distances.nil?
 			distances = distances.downcase
 			distances = distances.split(',').map{|v| v.strip}
-			all_components = distances.map{ |d| if validate_distance_string(d) then consolidate_vectors(d) end }
+			all_components = distances.map{ |d| if validate_distance_string(d) then consolidate_vectors(d) end }.reject{ |v| v.nil? }
 			@bearing_vectors = all_components.map{ |components| compute_bearing(components) }.reject{|v| v.nil? or v[1]==0}
 		end
 		@ship_valid = false

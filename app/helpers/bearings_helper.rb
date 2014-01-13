@@ -256,9 +256,9 @@ module BearingsHelper
 
 	def evaluate_aspect(front, top, target, invert)
 		if invert then
-			translation = {tw: 'Top Wedge', bw: 'Bottom Wedge', st: 'Port Broadside', pt: 'Starboard Broadside', fr: 'Fore, unprotected', fs: 'Fore, Port Sidewall', fp: 'Fore, Starboard Sidewall', aa: 'Aft, unprotected', as: 'Aft, Port Sidewall', ap: 'Aft, Starboard Sidewall'}
+			translation = {tw: 'Top Wedge', bw: 'Bottom Wedge', st: 'Port Broadside', pt: 'Starboard Broadside', fr: 'Fore, Unprotected', fs: 'Fore, Port Sidewall', fp: 'Fore, Starboard Sidewall', aa: 'Aft, Unprotected', as: 'Aft, Port Sidewall', ap: 'Aft, Starboard Sidewall'}
 		else
-			translation = {tw: 'Top Wedge', bw: 'Bottom Wedge', st: 'Starboard Broadside', pt: 'Port Broadside', fr: 'Fore, unprotected', fs: 'Fore, Starboard Sidewall', fp: 'Fore, Port Sidewall', aa: 'Aft, Unprotected', as: 'Aft, Starboard Sidewall', ap: 'Aft, Port Sidewall'}
+			translation = {tw: 'Top Wedge', bw: 'Bottom Wedge', st: 'Starboard Broadside', pt: 'Port Broadside', fr: 'Fore, Unprotected', fs: 'Fore, Starboard Sidewall', fp: 'Fore, Port Sidewall', aa: 'Aft, Unprotected', as: 'Aft, Starboard Sidewall', ap: 'Aft, Port Sidewall'}
 		end
 		orb = find_orb(front, top)
 		return translation[orb[unwrap(target)]]

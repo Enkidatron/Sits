@@ -22,7 +22,18 @@
 					<td><span class="badge"><%= vector[0] %></span></td>
 					<td><span class="badge"><%= vector[1] %></span></td>
 					<% if @ralt.valid_ship? %>
-						<td><span class="badge"><%= @ralt.ship.evaluate_target(vector[0]) %></span></td>
+						<td>
+							<% case @ralt.ship.evaluate_target(vector[0]) %>
+							<% when 'Fore, Unprotected', 'Aft, Unprotected' %>
+								<span class="label label-danger">
+							<% when 'Fore, Starboard Sidewall', 'Fore, Port Sidewall', 'Aft, Starboard Sidewall', 'Aft, Port Sidewall' %>
+								<span class="label label-warning">
+							<% when 'Starboard Broadside','Port Broadside' %>
+								<span class="label label-success">
+							<% else %>
+								<span class="label label-default">
+							<% end %>
+							<%= @ralt.ship.evaluate_target(vector[0]) %></span></td>
 					<% end %>
 					</tr>
 				<% end %>
