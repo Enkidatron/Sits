@@ -1,0 +1,3 @@
+class StrictNavigation
+
+end

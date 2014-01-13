@@ -1,0 +1,13 @@
+<%= form_tag("/navigation/loose", method: "get") do %>
+	<%= label_tag(:s, "Start:") %>
+	<%= text_field_tag(:s) %>
+	<%= label_tag(:m, "Middle:") %>
+	<%= text_field_tag(:m) %>
+	<%= label_tag(:e, "End:") %>
+	<%= text_field_tag(:e) %>
+	<%= label_tag(:p, "Pivot:") %>
+	<%= text_field_tag(:p) %>
+	<%= label_tag(:r, "Roll:") %>
+	<%= text_field_tag(:r) %>
+	<%= submit_tag("Loose") %>
+<% end %>
