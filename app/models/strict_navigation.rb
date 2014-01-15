@@ -56,12 +56,13 @@ class StrictNavigation
 		possible_mid_distance.each do |distance|
 			mid_ring += get_adjusted_window_chart(midpoint)[distance]
 		end
-		answers = []
-		start_ring.each do |bearing|
-			if mid_ring.include?(bearing) and get_window_distance(midpoint,bearing) + start_mid_dist == get_window_distance(start,bearing)
-				answers += [bearing]
-			end
-		end
+		potential_answers = start_ring & mid_ring
+		answers = potential_answers.reject{|bearing| get_window_distance(midpoint,bearing) + start_mid_dist != get_window_distance(start,bearing)}
+		# start_ring.each do |bearing|
+		# 	if mid_ring.include?(bearing) and get_window_distance(midpoint,bearing) + start_mid_dist == get_window_distance(start,bearing)
+		# 		answers += [bearing]
+		# 	end
+		# end
 		answers
 	end
 

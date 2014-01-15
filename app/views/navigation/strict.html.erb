@@ -11,6 +11,8 @@
 					<% end %>
 					<% if @nav.loose.start? %>
 						<span class="label label-success">Ship Valid!</span>
+					<% elsif !@nav.loose.start_bearings[0].nil? and !@nav.loose.start_bearings[1].nil? %>
+						<span class="label label-danger">Ship Not Valid!</span>
 					<% end %>
 				</div>
 			<% end %>
@@ -37,6 +39,8 @@
 				<% end %>
 				<% if @nav.loose.middle? %>
 					<span class="label label-success">Ship Valid!</span>
+				<% elsif !@nav.loose.middle_bearings[0].nil? and !@nav.loose.middle_bearings[1].nil? %>
+						<span class="label label-danger">Ship Not Valid!</span>
 				<% end %>
 			</div>
 		</div>
@@ -62,6 +66,8 @@
 				<% end %>
 				<% if @nav.loose.endpoint? %>
 					<span class="label label-success">Ship Valid!</span>
+				<% elsif !@nav.loose.endpoint_bearings[0].nil? and !@nav.loose.endpoint_bearings[1].nil? %>
+						<span class="label label-danger">Ship Not Valid!</span>
 				<% end %>
 			</div>
 		</div>

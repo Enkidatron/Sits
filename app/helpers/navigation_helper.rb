@@ -139,6 +139,7 @@ module NavigationHelper
 		blue = ['a','ab','b','bc','c','cd','d','de','e','ef','f','fa']
 		letters,symbols = split_bearing(window)
 		offset = blue.index(letters)
+		fix = letters.length == 2 ? 2 : 0
 		if offset.nil?
 			origin = window
 			offset = 12
@@ -148,7 +149,7 @@ module NavigationHelper
 		chart = get_window_chart(origin)
 		adjusted_chart = {}
 		chart.each do |k,v|
-			adjusted_chart[k]=v.map{|bearing| spin_bearing(bearing,12-offset)}
+			adjusted_chart[k]=v.map{|bearing| spin_bearing(bearing,12-offset+fix)}
 		end
 		return adjusted_chart
 	end
