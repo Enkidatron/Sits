@@ -1,2 +1,120 @@
-
+<% unless @nav.loose.empty? %>
+	<div class="row">
+		<div class="col-md-4">
+			<% unless @nav.loose.start_bearings.nil? or @nav.loose.start_bearings.length == 0 %>
+				<div class="well well-sm text-center">
+					<% unless @nav.loose.start_bearings[0].nil? %>
+						Front: <span class="badge"><%= @nav.loose.start_bearings[0] %></span><br>
+					<% end %>
+					<% unless @nav.loose.start_bearings[1].nil? %>
+						Top: <span class="badge"><%= @nav.loose.start_bearings[1] %></span><br>
+					<% end %>
+					<% if @nav.loose.start? %>
+						<span class="label label-success">Ship Valid!</span>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-md-4">
+			<div class="well well-sm text-center">
+				<% if @nav.loose.middle_bearings[0].nil? or @nav.loose.middle_bearings.length == 0 %>
+					<% unless @nav.possible_middle_piv.nil? %>
+						Potential Front: <br><% @nav.possible_middle_piv.each do |bearing| %>
+							<span class="label label-info"><%= bearing %></span><br>
+						<% end %>
+					<% end %>
+				<% else %>
+					Front: <span class="badge"><%= @nav.loose.middle_bearings[0] %></span><br>
+				<% end %>
+				<% if @nav.loose.middle_bearings[1].nil? %>
+					<% unless @nav.possible_middle_rol.nil? %>
+						Potential Top: <br><% @nav.possible_middle_rol.each do |bearing| %>
+							<span class="label label-info"><%= bearing %></span><br>
+						<% end %>
+					<% end %>
+				<% else %>
+					Top: <span class="badge"><%= @nav.loose.middle_bearings[1] %></span><br>
+				<% end %>
+				<% if @nav.loose.middle? %>
+					<span class="label label-success">Ship Valid!</span>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="well well-sm text-center">
+				<% if @nav.loose.endpoint_bearings[0].nil? or @nav.loose.endpoint_bearings.length == 0 %>
+					<% unless @nav.possible_end_piv.nil? %>
+						Potential Front: <br><% @nav.possible_end_piv.each do |bearing| %>
+							<span class="label label-info"><%= bearing %></span><br>
+						<% end %>
+					<% end %>
+				<% else %>
+					Front: <span class="badge"><%= @nav.loose.endpoint_bearings[0] %></span><br>
+				<% end %>
+				<% if @nav.loose.endpoint_bearings[1].nil? %>
+					<% unless @nav.possible_end_rol.nil? %>
+						Potential Top: <br><% @nav.possible_end_rol.each do |bearing| %>
+							<span class="label label-info"><%= bearing %></span><br>
+						<% end %>
+					<% end %>
+				<% else %>
+					Top: <span class="badge"><%= @nav.loose.endpoint_bearings[1] %></span><br>
+				<% end %>
+				<% if @nav.loose.endpoint? %>
+					<span class="label label-success">Ship Valid!</span>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<% unless @nav.loose.start_mid_piv.nil? and @nav.loose.start_mid_rol.nil? %>
+				<div class="well well-sm text-center">
+					Start to Mid:<br>
+					Pivot: <% if @nav.loose.start_mid_piv %><span class="label label-success">Good!</span>
+						<% else %><span class="label label-warning">Not Good!</span><% end %> <br>
+					Roll: <% if @nav.loose.start_mid_rol %><span class="label label-success">Good!</span>
+						<% else %><span class="label label-warning">Not Good!</span><% end %>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-md-6">
+			<% unless @nav.loose.mid_end_piv.nil? and @nav.loose.mid_end_rol.nil? %>
+				<div class="well well-sm text-center">
+					Middle to End:<br>
+					Pivot: <% if @nav.loose.mid_end_piv %><span class="label label-success">Good!</span>
+						<% else %><span class="label label-warning">Not Good!</span><% end %> <br>
+					Roll: <% if @nav.loose.mid_end_rol %><span class="label label-success">Good!</span>
+						<% else %><span class="label label-warning">Not Good!</span><% end %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<% unless @nav.loose.start_end_piv.nil? and @nav.loose.start_end_rol.nil? %>
+				<div class="well well-sm text-center">
+					Start to End:<br>
+					Pivot: <% if @nav.loose.start_end_piv %><span class="label label-success">Good!</span>
+						<% else %><span class="label label-warning">Not Good!</span><% end %> <br>
+					Roll: <% if @nav.loose.start_end_rol %><span class="label label-success">Good!</span>
+						<% else %><span class="label label-warning">Not Good!</span><% end %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<% unless @nav.strict_piv.nil? and @nav.strict_rol.nil? %>
+				<div class="well well-sm text-center">
+					Strict Start to End:<br>
+					Pivot: <% if @nav.strict_piv %><span class="label label-success">Good!</span>
+						<% else %><span class="label label-warning">Not Good!</span><% end %> <br>
+					Roll: <% if @nav.strict_rol %><span class="label label-success">Good!</span>
+						<% else %><span class="label label-warning">Not Good!</span><% end %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+<% end %>
 <%= render 'strictform' %>
