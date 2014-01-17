@@ -2,23 +2,45 @@
 	<div class="row">
 		<div class="col-md-4">
 			<% unless @nav.loose.start_bearings.nil? or @nav.loose.start_bearings.length == 0 %>
-				<div class="well well-sm text-center">
-					<% unless @nav.loose.start_bearings[0].nil? %>
-						Front: <span class="badge"><%= @nav.loose.start_bearings[0] %></span><br>
-					<% end %>
-					<% unless @nav.loose.start_bearings[1].nil? %>
-						Top: <span class="badge"><%= @nav.loose.start_bearings[1] %></span><br>
-					<% end %>
-					<% if @nav.loose.start? %>
-						<span class="label label-success">Ship Valid!</span>
-					<% elsif !@nav.loose.start_bearings[0].nil? and !@nav.loose.start_bearings[1].nil? %>
-						<span class="label label-danger">Ship Not Valid!</span>
-					<% end %>
+				<div class="well well-sm">
+					<table class="table table-condensed">
+						<thead><th>Front</th><th>Top</th><th></th></thead>
+						<tbody>
+							<tr>
+								<td><% unless @nav.loose.start_bearings[0].nil? %>
+									<span class="badge"><%= @nav.loose.start_bearings[0] %></span><br>
+								<% end %></td>
+								<td><% unless @nav.loose.start_bearings[1].nil? %>
+									<span class="badge"><%= @nav.loose.start_bearings[1] %></span><br>
+								<% end %></td>
+								<td><% if @nav.loose.start? %>
+									<span class="label label-success">Ship Valid!</span>
+								<% elsif !@nav.loose.start_bearings[0].nil? and !@nav.loose.start_bearings[1].nil? %>
+									<span class="label label-danger">Ship Not Valid!</span>
+								<% end %></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			<% end %>
 		</div>
 		<div class="col-md-4">
 			<div class="well well-sm text-center">
+				<table class="table table-condensed">
+					<thead><th>Front</th><th>Top</th><th></th></thead>
+					<tbody>
+						<% @nav.midpoint_bearings.each do |bearing| %>
+							<tr><td>
+								<% if @nav.real_mid_piv? %><span class="badge"><% else %><span class="label label-info"><% end %>
+								<%= bearing[0] unless bearing[0].nil? %></span></td>
+								<td>
+									<% if @nav.real_mid_rol? %><span class="badge"><% else %><span class="label label-info"><% end %>
+									<%= bearing[1] unless bearing[1].nil? %></span></td></tr>
+						<% end %>
+					</tbody>
+				</table>
+
+<!-- 
 				<% if @nav.loose.middle_bearings[0].nil? or @nav.loose.middle_bearings.length == 0 %>
 					<% unless @nav.possible_middle_piv.nil? %>
 						Potential Front: <br><% @nav.possible_middle_piv.each do |bearing| %>
@@ -42,10 +64,27 @@
 				<% elsif !@nav.loose.middle_bearings[0].nil? and !@nav.loose.middle_bearings[1].nil? %>
 						<span class="label label-danger">Ship Not Valid!</span>
 				<% end %>
+ -->
+
 			</div>
 		</div>
 		<div class="col-md-4">
 			<div class="well well-sm text-center">
+				<table class="table table-condensed">
+					<thead><th>Front</th><th>Top</th><th></th></thead>
+					<tbody>
+						<% @nav.endpoint_bearings.each do |bearing| %>
+							<tr><td>
+								<% if @nav.real_end_piv? %><span class="badge"><% else %><span class="label label-info"><% end %>
+								<%= bearing[0] unless bearing[0].nil? %></span></td>
+								<td>
+									<% if @nav.real_end_rol? %><span class="badge"><% else %><span class="label label-info"><% end %>
+									<%= bearing[1] unless bearing[1].nil? %></span></td></tr>
+						<% end %>
+					</tbody>
+				</table>
+
+<!-- 
 				<% if @nav.loose.endpoint_bearings[0].nil? or @nav.loose.endpoint_bearings.length == 0 %>
 					<% unless @nav.possible_end_piv.nil? %>
 						Potential Front: <br><% @nav.possible_end_piv.each do |bearing| %>
@@ -69,6 +108,8 @@
 				<% elsif !@nav.loose.endpoint_bearings[0].nil? and !@nav.loose.endpoint_bearings[1].nil? %>
 						<span class="label label-danger">Ship Not Valid!</span>
 				<% end %>
+ -->
+
 			</div>
 		</div>
 	</div>

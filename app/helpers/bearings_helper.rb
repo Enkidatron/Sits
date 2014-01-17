@@ -12,6 +12,11 @@ module BearingsHelper
 		end
 	end
 
+	def roll_and_validate_ship(front,top)
+		new_front, new_top,_ ,_ = rotate_bearings(front,top,nil)
+		validate_ship(new_front,new_top)
+	end
+
 	def validate_ship(front, top)
 		blue = ['+++','bc++','bc+','bc','bc-','bc--','---','ef--','ef-','ef','ef+','ef++']
 		blue_offset = ['+++','c++','c+','c','c-','c--','---','f--','f-','f','f+','f++']
@@ -77,7 +82,7 @@ module BearingsHelper
 	end
 
 	def unwrap(bearing)
-		unwrap_table=['+++','a++','b++','c++','d++','e++','f++','a+','ab+','b+','bc+','c+','cd+','d+','de+','e+','ef+','f+','fa+','a','ab','b','bc','c','cd','d','de','e','ef','f','fa','a-','ab-','b-','bc-','c-','cd-','d-','de-','e-','ef-','f-','fa-','a--','b--','c--','d--','e--','f--','---']
+		unwrap_table=['+++','a++','b++','c++','d++','e++','f++','a+','ab+','b+','bc+','c+','cd+','d+','de+','e+','ef+','f+','fa+','a','ab','b','bc','c','cd','d','de','e','ef','f','fa','a-','ab-','b-','bc-','c-','cd-','d-','de-','e-','ef-','f-','fa-','a--','b--','c--','d--','e--','f--','---','ab++','bc++','cd++','de++','ef++','fa++','ab--','bc--','cd--','de--','ef--','fa--']
 		return unwrap_table.index(bearing)
 	end
 
