@@ -71,6 +71,7 @@ class StrictNavigation
 		mid_piv += @possible_middle_piv unless @possible_middle_piv.nil?
 		mid_piv += [@loose.middle_bearings[0]] unless @loose.middle_bearings.nil?
 		mid_piv = mid_piv.reject{|bearing| bearing.nil?}
+		mid_piv = mid_piv.reject{|bearing| bearing.length == 4}
 		mid_rol = []
 		mid_rol += @possible_middle_rol unless @possible_middle_rol.nil?
 		mid_rol += [@loose.middle_bearings[1]] unless @loose.middle_bearings.nil?
@@ -148,7 +149,7 @@ class StrictNavigation
 	end
 
 	def real_mid_rol?
-		return @possible_mid_rol.nil?
+		return @possible_middle_rol.nil?
 	end
 
 	def real_end_piv?
