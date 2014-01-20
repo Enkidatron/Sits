@@ -28,7 +28,8 @@ class Bearing
 	def evaluate_target(target)
 		@evaluated ||= {}
 		unless @evaluated.include?(target)
-			@evaluated[target] = evaluate_aspect(@math_front,@math_top,@math_targets[targets.index(target)],@invert)
+			# @evaluated[target] = evaluate_aspect(@math_front,@math_top,@math_targets[targets.index(target)],@invert)
+			@evaluated[target] = evaluate(front,top,target)
 		end
 		return @evaluated[target]
 	end
