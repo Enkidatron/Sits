@@ -13,9 +13,9 @@ class LooseNavigation
 	end
 
 	def initialize(start,middle,endpoint,piv,rol)
-		@start_bearings = start.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing)} unless start.nil?
-		@middle_bearings = middle.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing)} unless middle.nil?
-		@endpoint_bearings = endpoint.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing)} unless endpoint.nil?
+		@start_bearings = start.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing, lines = true)} unless start.nil?
+		@middle_bearings = middle.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing, lines = true)} unless middle.nil?
+		@endpoint_bearings = endpoint.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing, lines = true)} unless endpoint.nil?
 		@pivot = piv.to_i unless piv.nil?
 		@roll = rol.to_i unless rol.nil?
 
