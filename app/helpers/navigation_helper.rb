@@ -102,7 +102,7 @@ module NavigationHelper
 
 	def get_distance_chart(origin)
 		case origin
-			#          |         green         |                     blue                      |                     orange                    |                    low blue                   |       low green       |   |    green line high    |    green line low     |
+			#      |   |         green         |                     blue                      |                     orange                    |                    low blue                   |       low green       |   |    green line high    |    green line low     |
 		when 'a'
 			return [3.0,2.0,2.2,3.2,4.0,3.2,2.2,1.0,1.2,2.2,3.2,4.2,4.3,5.0,4.3,4.2,3.2,2.2,1.2,0.0,1.0,2.0,3.0,4.0,5.0,6.0,5.0,4.0,3.0,2.0,1.0,1.0,1.2,2.2,3.2,4.2,4.3,5.0,4.3,4.2,3.2,2.2,1.2,2.0,2.2,3.2,4.0,3.2,2.2,3.0,2.2,3.2,4.0,4.0,3.2,2.2,2.2,3.2,4.0,4.0,3.2,2.2]
 		when 'ab'
@@ -140,15 +140,15 @@ module NavigationHelper
 	end	
 
 	def get_adjusted_window_chart(window)
+		if window[-1] == '-'
+			window = invert_bearing(window)
+			invert = true
+		end
 		blue = ['a','ab','b','bc','c','cd','d','de','e','ef','f','fa']
 		letters,symbols = split_bearing(window)
 		offset = blue.index(letters)
 		offset ||= 0
 		fix = letters.length == 2 ? 2 : 0
-		if window[-1] == '-'
-			window = invert_bearing(window)
-			invert = true
-		end
 		origin = spin_bearing(window,offset)
 		chart = get_window_chart(origin)
 		adjusted_chart = {}
@@ -185,6 +185,30 @@ module NavigationHelper
 		# end
 		one,two = rotate_windows(first,second)
 		get_distance_chart(one)[unwrap(two)].to_i
+	end
+
+	def validate_bearing(bearing, lines=false)
+		return false if bearing.nil?
+		bluegreen = ['a','ab','b','bc','c','cd','d','de','e','ef','f','fa']
+		orange = ['a','b','c','d','e','f']
+		purple = ['']
+		letters, symbols = split_bearing(bearing)
+		case symbols
+		when '+','-'
+			if bluegreen.include?(letters) then true else false end
+		when '++','--'
+			if lines
+				if bluegreen.include?(letters) then true else false end
+			else
+				if orange.include?(letters) then true else false end
+			end
+		when '+++', '---'
+			if purple.include?(letters) then true else false end
+		when ''
+			if bluegreen.include?(letters) then true else false end
+		else
+			false
+		end
 	end
 
 end

@@ -1,0 +1,5 @@
+<%= form_tag("/navigation/top", method: "get") do %>
+	<%= label_tag(:f, "Front:") %>
+	<%= text_field_tag(:f) %>
+	<%= submit_tag("Find Top") %>
+<% end %>

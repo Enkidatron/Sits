@@ -1,0 +1,17 @@
+<% unless @tops.nil? %>
+	<div class="well well-sm">
+		<table class="table table-condensed">
+			<thead><th>Front</th><th>Top</th><th>Starboard</th></thead>
+			<tbody>
+				<% @tops.each_with_index do |top,index| %>
+				<tr>
+					<td><%= @front%></td>
+					<td><%= top %></td>
+					<td><%= @tops[index-9] %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+<% end %>
+<%= render 'topform' %>

@@ -2,6 +2,7 @@ SitsHelper::Application.routes.draw do
   
   get "navigation/loose"
   get "navigation/strict"
+  get "navigation/top"
   get "bearings" => 'bearings#show'
 
   get "ralt" => 'ralt#show'
