@@ -71,7 +71,7 @@ module RaltHelper
 				letters = "#{both[0]}#{both[1]}"
 			end
 		end
-		return "#{letters}#{symbols}", Math.hypot(flat_distance,up_distance).to_i, components
+		return "#{letters}#{symbols}".intern, Math.hypot(flat_distance,up_distance).to_i, components
 	end
 
 	def display_distance(components)

@@ -6,16 +6,16 @@ class LooseNavigation
 
 	def analyze(bearing1,bearing2,movement,modifier)
 		if !bearing1.nil? and !bearing2.nil? and !movement.nil?
-			return get_window_distance(bearing1,bearing2) <= (movement.to_f*modifier).round
+			return get_window_distance(bearing1.intern,bearing2.intern) <= (movement.to_f*modifier).round
 		else
 			return nil
 		end
 	end
 
 	def initialize(start,middle,endpoint,piv,rol)
-		@start_bearings = start.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing, lines = true)} unless start.nil?
-		@middle_bearings = middle.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing, lines = true)} unless middle.nil?
-		@endpoint_bearings = endpoint.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing, lines = true)} unless endpoint.nil?
+		@start_bearings = start.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing, lines = true)}.map{|v| v.intern } unless start.nil?
+		@middle_bearings = middle.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing, lines = true)}.map{|v| v.intern } unless middle.nil?
+		@endpoint_bearings = endpoint.split(',').reject{ |bearing| bearing.nil? or !validate_bearing(bearing, lines = true)}.map{|v| v.intern } unless endpoint.nil?
 		@pivot = piv.to_i unless piv.nil?
 		@roll = rol.to_i unless rol.nil?
 
@@ -26,9 +26,9 @@ class LooseNavigation
 		@mid_end_piv = analyze(@middle_bearings[0],@endpoint_bearings[0],@pivot,0.5) unless (@middle_bearings.nil? or @endpoint_bearings.nil?)
 		@mid_end_rol = analyze(@middle_bearings[1],@endpoint_bearings[1],@roll,0.5) unless (@middle_bearings.nil? or @endpoint_bearings.nil?)
 
-		@start_ship = Bearing.new(@start_bearings[0],@start_bearings[1],'') unless @start_bearings.nil? or @start_bearings.length < 2
-		@middle_ship = Bearing.new(@middle_bearings[0],@middle_bearings[1],'') unless @middle_bearings.nil? or @middle_bearings.length < 2
-		@endpoint_ship = Bearing.new(@endpoint_bearings[0],@endpoint_bearings[1],'') unless @endpoint_bearings.nil? or @endpoint_bearings.length < 2
+		@start_ship = Bearing.new(@start_bearings[0].to_s,@start_bearings[1].to_s,'') unless @start_bearings.nil? or @start_bearings.length < 2
+		@middle_ship = Bearing.new(@middle_bearings[0].to_s,@middle_bearings[1].to_s,'') unless @middle_bearings.nil? or @middle_bearings.length < 2
+		@endpoint_ship = Bearing.new(@endpoint_bearings[0].to_s,@endpoint_bearings[1].to_s,'') unless @endpoint_bearings.nil? or @endpoint_bearings.length < 2
 	end
 
 	def empty?

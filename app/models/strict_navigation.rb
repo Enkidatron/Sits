@@ -5,6 +5,9 @@ class StrictNavigation
 	attr_reader :loose, :possible_middle_piv, :possible_end_piv, :possible_middle_rol, :possible_end_rol, :strict_piv, :strict_rol, :midpoint_bearings, :endpoint_bearings
 
 	def strict_analyze(start,midpoint,endpoint)
+		start = start.intern
+		midpoint = midpoint.intern
+		endpoint = endpoint.intern
 		start_end_dist = get_window_distance(start,endpoint)
 		start_mid_dist = get_window_distance(start,midpoint)
 		mid_end_dist = get_window_distance(midpoint,endpoint)
