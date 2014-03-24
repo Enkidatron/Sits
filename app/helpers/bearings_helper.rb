@@ -19,15 +19,18 @@ module BearingsHelper
 	end
 
 	def validate_ship(front, top)
-		orange = [:'+++',:'bc++',:'bc+',:'bc',:'bc-',:'bc--',:'---',:'ef--',:'ef-',:'ef',:'ef+',:'ef++']
-		orange_offset = [:'+++',:'c++',:'c+',:'c',:'c-',:'c--',:'---',:'f--',:'f-',:'f',:'f+',:'f++']
-		blue = [:'d++',:'c++',:'bc+',:'bc',:'bc-',:'b--',:'a--',:'f--',:'ef-',:'ef',:'ef+',:'e++']
-		blue_offset = [:'de++',:'cd++',:'c+',:'c',:'c-',:'bc--',:'ab--',:'fa--',:'f-',:'f',:'f+',:'ef++']
-		green = [:'d+',:'cd+',:'c+',:'bc',:'b-',:'ab-',:'a-',:'fa-',:'f-',:'ef',:'e+',:'de+']
-		purple = [:'a',:'ab',:'b',:'bc',:'c',:'cd',:'d',:'de',:'e',:'ef',:'f',:'fa']
-		top_rings = {:'a' => orange, :'ab' => orange_offset, :'a+' => blue, :'ab+' => blue_offset, :'a++' => green, :'+++' => purple}
-		ring = top_rings[front]
-		if ring.include?(top) then true else false end
+		# orange = [:'+++',:'bc++',:'bc+',:'bc',:'bc-',:'bc--',:'---',:'ef--',:'ef-',:'ef',:'ef+',:'ef++']
+		# orange_offset = [:'+++',:'c++',:'c+',:'c',:'c-',:'c--',:'---',:'f--',:'f-',:'f',:'f+',:'f++']
+		# blue = [:'d++',:'c++',:'bc+',:'bc',:'bc-',:'b--',:'a--',:'f--',:'ef-',:'ef',:'ef+',:'e++']
+		# blue_offset = [:'de++',:'cd++',:'c+',:'c',:'c-',:'bc--',:'ab--',:'fa--',:'f-',:'f',:'f+',:'ef++']
+		# green = [:'d+',:'cd+',:'c+',:'bc',:'b-',:'ab-',:'a-',:'fa-',:'f-',:'ef',:'e+',:'de+']
+		# purple = [:'a',:'ab',:'b',:'bc',:'c',:'cd',:'d',:'de',:'e',:'ef',:'f',:'fa']
+		# top_rings = {:'a' => orange, :'ab' => orange_offset, :'a+' => blue, :'ab+' => blue_offset, :'a++' => green, :'+++' => purple}
+		# ring = top_rings[front]
+		# if ring.include?(top) then true else false end
+		chart = get_adjusted_window_chart(front)[3]
+		answer = (chart.include?(top) and chart.include?(invert_bearing(top)))
+		return answer
 	end
 
 	def invert_bearing(bearing)
@@ -83,25 +86,28 @@ module BearingsHelper
 	end
 
 	def find_starboard(front,top)
-		orange = [:'+++',:'bc++',:'bc+',:'bc',:'bc-',:'bc--',:'---',:'ef--',:'ef-',:'ef',:'ef+',:'ef++']
-		orange_offset = [:'+++',:'c++',:'c+',:'c',:'c-',:'c--',:'---',:'f--',:'f-',:'f',:'f+',:'f++']
-		blue = [:'d++',:'c++',:'bc+',:'bc',:'bc-',:'b--',:'a--',:'f--',:'ef-',:'ef',:'ef+',:'e++']
-		blue_offset = [:'de++',:'cd++',:'c+',:'c',:'c-',:'bc--',:'ab--',:'fa--',:'f-',:'f',:'f+',:'ef++']
-		green = [:'d+',:'cd+',:'c+',:'bc',:'b-',:'ab-',:'a-',:'fa-',:'f-',:'ef',:'e+',:'de+']
-		purple = [:'a',:'ab',:'b',:'bc',:'c',:'cd',:'d',:'de',:'e',:'ef',:'f',:'fa']
-		orangeblue = [:'a',:'ab',:'b',:'bc',:'c',:'cd',:'d',:'de',:'e',:'ef',:'f',:'fa']
-		letters,symbols = split_bearing(front)
-		offset = orangeblue.index(letters)
-		offset ||= 0
-		fix = letters.length == 2 ? 2 : 0
-		new_front,new_top,_,invert = rotate_bearings(front,top,nil)
-		top_rings = {:'a' => orange, :'ab' => orange_offset, :'a+' => blue, :'ab+' => blue_offset, :'a++' => green, :'+++' => purple}
-		ring = top_rings[new_front]
-		new_starboard = ring[ring.index(new_top)-9]
-		starboard = spin_bearing(new_starboard,12-offset+fix)
-		if invert
-			starboard = invert_bearing(starboard)
-		end
+		# orange = [:'+++',:'bc++',:'bc+',:'bc',:'bc-',:'bc--',:'---',:'ef--',:'ef-',:'ef',:'ef+',:'ef++']
+		# orange_offset = [:'+++',:'c++',:'c+',:'c',:'c-',:'c--',:'---',:'f--',:'f-',:'f',:'f+',:'f++']
+		# blue = [:'d++',:'c++',:'bc+',:'bc',:'bc-',:'b--',:'a--',:'f--',:'ef-',:'ef',:'ef+',:'e++']
+		# blue_offset = [:'de++',:'cd++',:'c+',:'c',:'c-',:'bc--',:'ab--',:'fa--',:'f-',:'f',:'f+',:'ef++']
+		# green = [:'d+',:'cd+',:'c+',:'bc',:'b-',:'ab-',:'a-',:'fa-',:'f-',:'ef',:'e+',:'de+']
+		# purple = [:'a',:'ab',:'b',:'bc',:'c',:'cd',:'d',:'de',:'e',:'ef',:'f',:'fa']
+		# orangeblue = [:'a',:'ab',:'b',:'bc',:'c',:'cd',:'d',:'de',:'e',:'ef',:'f',:'fa']
+		# letters,symbols = split_bearing(front)
+		# offset = orangeblue.index(letters)
+		# offset ||= 0
+		# fix = letters.length == 2 ? 2 : 0
+		# new_front,new_top,_,invert = rotate_bearings(front,top,nil)
+		# top_rings = {:'a' => orange, :'ab' => orange_offset, :'a+' => blue, :'ab+' => blue_offset, :'a++' => green, :'+++' => purple}
+		# ring = top_rings[new_front]
+		# new_starboard = ring[ring.index(new_top)-9]
+		# starboard = spin_bearing(new_starboard,12-offset+fix)
+		# if invert
+		# 	starboard = invert_bearing(starboard)
+		# end
+		# return starboard
+		chart = get_adjusted_window_chart(front)[3] & get_adjusted_window_chart(invert_bearing(front))[3]
+		starboard = chart[chart.index(top)-9]
 		return starboard
 	end
 
