@@ -27,6 +27,9 @@ class StrictNavigation
 
 	def generate_middle_values(start,endpoint)
 		start_end_dist = get_window_distance(start,endpoint)
+		# The following could be refactored to use: 
+		# [start|end]_chart = get_adjusted_window_chart(start|endpoint)
+		# [start|end]_ring = (_chart[(distance/2.0).floor] + _chart[(distance/2.0).round]).uniq
 		if start_end_dist % 2 == 0
 			#even
 			start_ring = get_adjusted_window_chart(start)[start_end_dist/2]
@@ -38,6 +41,8 @@ class StrictNavigation
 			end_chart = get_adjusted_window_chart(endpoint)
 			end_ring = end_chart[(start_end_dist-1)/2] + start_chart[(start_end_dist+1)/2]
 		end
+		# The following could be refactored as:
+		# return start_ring & end_ring
 		answers = []
 		start_ring.each do |bearing|
 			if end_ring.include?(bearing)

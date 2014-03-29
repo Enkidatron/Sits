@@ -187,7 +187,7 @@ module BearingsHelper
 							answer = "Bottom Wedge, leak to Aft, Port Sidewall"
 						end
 					else
-						anwer = "Aft, Port Sidewall"
+						answer = "Aft, Port Sidewall"
 					end
 				when :st
 					if tie
@@ -198,7 +198,7 @@ module BearingsHelper
 							answer = "Bottom Wedge, leak to Aft, Starboard Sidewall"
 						end
 					else
-						anwer = "Aft, Starboard Sidewall"
+						answer = "Aft, Starboard Sidewall"
 					end
 				end
 			end
