@@ -19,7 +19,6 @@ SitsHelper::Application.routes.draw do
   devise_for :users
 
   root :to => 'pages#home'
-  get 'about' => 'pages#about'
   post 'games/:id/join' => 'games#join', as: 'join_game'
   post 'games/:id/leave' => 'games#leave', as: 'leave_game'
   post 'games/:id/start' => 'games#start', as: 'start_game'
